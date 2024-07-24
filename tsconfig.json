@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "moduleResolution": "node",
+    "target": "ES2020",
     "module": "commonjs",
-    "outDir": "dist",
-    "declaration": true
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"],                            // Inclui todos os arquivos TypeScript na pasta "src"
+  "exclude": ["node_modules", "**/*.spec.ts"]    // Exclui o diretório "node_modules" e arquivos de teste
 }

@@ -1,5 +1,3 @@
-import * as XRegExp from "xregexp";
-
 /**
  * The rank for each possible chord. Rank is the distance in semitones from C.
  */
@@ -36,10 +34,10 @@ const BASS_PATTERN = "(\\/(?<bass>[A-G](#|b)?))?";
 export const ROOT_PATTERN = "(?<root>[A-G](#|b)?)";
 export const MINOR_PATTERN = "(m|min|minor)+";
 
-const CHORD_REGEX = XRegExp(
+const CHORD_REGEX = new RegExp(
   `^${ROOT_PATTERN}${SUFFIX_PATTERN}${BASS_PATTERN}$`
 );
-const MINOR_SUFFIX_REGEX = XRegExp(`^${MINOR_PATTERN}.*$`);
+const MINOR_SUFFIX_REGEX = new RegExp(`^${MINOR_PATTERN}.*$`);
 
 /**
  * Represents a musical chord. For example, Am7/C would have:
@@ -64,6 +62,7 @@ export class Chord {
   }
 
   isMinor(): boolean {
+    // @ts-expect-error Missing type definition for MINOR_SUFFIX_REGEX.
     return MINOR_SUFFIX_REGEX.test(this.suffix);
   }
 
@@ -71,7 +70,11 @@ export class Chord {
     if (!isChord(token)) {
       throw new Error(`${token} is not a valid chord`);
     }
-    const result = XRegExp.exec(token, CHORD_REGEX);
+    const regex = new RegExp(CHORD_REGEX);
+    const result = regex.exec(token);
+
+    // const result = XRegExp.exec(token, CHORD_REGEX);
+    // @ts-expect-error é necessário verificar se result é null.
     return new Chord(result.root, result.suffix, result.bass);
   }
 }

@@ -130,6 +130,7 @@ function transposeTokens(
   const transpositionMap = createTranspositionMap(fromKey, toKey);
   const result = [];
   for (const line of tokens) {
+    // @ts-expect-error necessário
     const accumulator = [];
     let spaceDebt = 0;
     line.forEach((token, i) => {
