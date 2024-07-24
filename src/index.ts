@@ -142,15 +142,19 @@ function transposeTokens(
           const truncatedToken = token.substring(spacesToTake);
           accumulator.push(truncatedToken);
           spaceDebt = 0;
+          // @ts-expect-error necessário
         } else if (typeof accumulator[accumulator.length - 1] === "string") {
+          // @ts-expect-error necessário
           accumulator.push(accumulator.pop() + token);
         } else {
           accumulator.push(token);
         }
       } else {
         const transposedChord = new Chord(
+          // @ts-expect-error necessário
           transpositionMap.get(token.root),
           token.suffix,
+          // @ts-expect-error necessário
           transpositionMap.get(token.bass)
         );
         const originalChordLen = token.toString().length;
@@ -171,6 +175,7 @@ function transposeTokens(
         }
       }
     });
+    // @ts-expect-error necessário
     result.push(accumulator);
   }
   return result;

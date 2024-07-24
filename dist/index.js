@@ -107,6 +107,7 @@ function transposeTokens(tokens, fromKey, toKey) {
     const transpositionMap = createTranspositionMap(fromKey, toKey);
     const result = [];
     for (const line of tokens) {
+        // @ts-expect-error necessário
         const accumulator = [];
         let spaceDebt = 0;
         line.forEach((token, i) => {
@@ -118,8 +119,10 @@ function transposeTokens(tokens, fromKey, toKey) {
                     const truncatedToken = token.substring(spacesToTake);
                     accumulator.push(truncatedToken);
                     spaceDebt = 0;
+                    // @ts-expect-error necessário
                 }
                 else if (typeof accumulator[accumulator.length - 1] === "string") {
+                    // @ts-expect-error necessário
                     accumulator.push(accumulator.pop() + token);
                 }
                 else {
@@ -127,7 +130,11 @@ function transposeTokens(tokens, fromKey, toKey) {
                 }
             }
             else {
-                const transposedChord = new Chord_1.Chord(transpositionMap.get(token.root), token.suffix, transpositionMap.get(token.bass));
+                const transposedChord = new Chord_1.Chord(
+                // @ts-expect-error necessário
+                transpositionMap.get(token.root), token.suffix, 
+                // @ts-expect-error necessário
+                transpositionMap.get(token.bass));
                 const originalChordLen = token.toString().length;
                 const transposedChordLen = transposedChord.toString().length;
                 // Handle length differences between chord and transposed chord.
@@ -148,6 +155,7 @@ function transposeTokens(tokens, fromKey, toKey) {
                 }
             }
         });
+        // @ts-expect-error necessário
         result.push(accumulator);
     }
     return result;

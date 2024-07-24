@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.KeySignatures = exports.guessKeySignature = exports.KeySignatureEnum = exports.KeySignature = exports.KeyType = exports.C_FLAT_SCALE = exports.G_FLAT_SCALE = exports.C_SHARP_SCALE = exports.F_SHARP_SCALE = void 0;
 const ts_enums_1 = require("ts-enums");
 const Chord_1 = require("./Chord");
-const XRegExp = require("xregexp");
 // Chromatic scale starting from C using flats only.
 const FLAT_SCALE = [
     "C",
@@ -42,7 +41,7 @@ exports.C_SHARP_SCALE = exports.F_SHARP_SCALE.map(note => note === "C" ? "B#" : 
 exports.G_FLAT_SCALE = FLAT_SCALE.map(note => note === "B" ? "Cb" : note);
 // Chromatic scale for Cb major which includes Cb and Fb.
 exports.C_FLAT_SCALE = exports.G_FLAT_SCALE.map(note => note === "E" ? "Fb" : note);
-const KEY_SIGNATURE_REGEX = XRegExp(`${Chord_1.ROOT_PATTERN}(${Chord_1.MINOR_PATTERN})?`);
+const KEY_SIGNATURE_REGEX = new RegExp(`${Chord_1.ROOT_PATTERN}(${Chord_1.MINOR_PATTERN})?`);
 var KeyType;
 (function (KeyType) {
     KeyType[KeyType["FLAT"] = 0] = "FLAT";

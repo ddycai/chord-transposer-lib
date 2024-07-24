@@ -7,6 +7,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src"],                            // Inclui todos os arquivos TypeScript na pasta "src"
+  "include": ["src", "dist/Chord.js", "dist/index.js", "dist/KeySignatures.js"],                            // Inclui todos os arquivos TypeScript na pasta "src"
   "exclude": ["node_modules", "**/*.spec.ts"]    // Exclui o diretório "node_modules" e arquivos de teste
 }

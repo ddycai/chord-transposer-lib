@@ -1,6 +1,5 @@
 import { Enum, EnumValue } from 'ts-enums'
 import { Chord, MINOR_PATTERN, ROOT_PATTERN } from './Chord';
-import XRegExp from 'xregexp';
 
 // Chromatic scale starting from C using flats only.
 const FLAT_SCALE = [
@@ -46,7 +45,7 @@ export const G_FLAT_SCALE = FLAT_SCALE.map(note => note === "B" ? "Cb" : note);
 // Chromatic scale for Cb major which includes Cb and Fb.
 export const C_FLAT_SCALE = G_FLAT_SCALE.map(note => note === "E" ? "Fb" : note);
 
-const KEY_SIGNATURE_REGEX = XRegExp(`${ROOT_PATTERN}(${MINOR_PATTERN})?`)
+const KEY_SIGNATURE_REGEX = new RegExp(`${ROOT_PATTERN}(${MINOR_PATTERN})?`)
 
 export enum KeyType { FLAT, SHARP }
 
